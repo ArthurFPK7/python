@@ -2,7 +2,12 @@
 
 import os
 
-restaurantes=['PythonBurguer', 'Madalosso', 'Notubo']
+# restaurantes=['PythonBurguer', 'Madalosso', 'Notubo']
+# dicionário
+restaurantes=[  {'nome':'Pão com Banha','categoria':'Gourmet','ativo':False},
+                {'nome':'Saco de Feijão','categoria':'Feijoada','ativo':True},
+                {'nome':'Bife Sujo','categoria':'Churrascaria','ativo':False}
+            ]
 
 def exibir_nome_do_programa():
     print('𝕊𝕒𝕓𝕠𝕣 𝕖𝕩𝕡𝕣𝕖𝕤𝕤')
@@ -24,18 +29,20 @@ def opcao_invalida():
 def cadastrar_novo_restaurante():
     exibir_subtitulo('CADASTRO DE NOVOS RESTAURANTES')
     nome_do_restaurante=input('Digite o nome do restaurante que você quer cadastrar')
+    categoria = input (f'Digite a categoria do restaurante:' {nome_do_restaurante})
+    dados_do_restaurante = ('nome':nome_do_restaurante, 'categoria':categoria, 'ativo':False)
     restaurantes.append(nome_do_restaurante)
-    
+    print(f'O Restaurante {nome_restaurante} foi cadastrado com sucesso')
     voltar_menu_principal()
     
 def listar_restaurantes():
     exibir_subtitulo('LISTANDO RESTAURANTES')
     
     for restaurante in restaurantes:
-        print(restaurante)
-        
-        
-
+        nome_restaurante=restaurante
+        categoria=restaurante['categoria']
+        ativo=retaurante['ativo']
+        print(f'- {nome_restaurante} | {categoria} | {ativo}' )
 
 def finalizar_app():
     exibir_subtitulo('Finalizar app')
