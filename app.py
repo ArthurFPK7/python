@@ -1,79 +1,83 @@
-# print ("Hello world, Python!")
+import os 
 
-import os
+restaurantes = [{'nome':'Popo pães','categoria':'Padaria','ativo':False},
+                {'nome':'Cidade de minas','categoria':'Mineiro','ativo':True},
+                {'nome':'Miamoto','categoria':'Japones','ativo':True},
+                {'nome':'Luigis','categoria':'Italiano','ativo':False}]
+                
 
-# restaurantes=['PythonBurguer', 'Madalosso', 'Notubo']
-# dicionário
-restaurantes=[  {'nome':'Pão com Banha','categoria':'Gourmet','ativo':False},
-                {'nome':'Saco de Feijão','categoria':'Feijoada','ativo':True},
-                {'nome':'Bife Sujo','categoria':'Churrascaria','ativo':False}
-            ]
+def exibir_maracutaia():
+    print('''██████████████████████████████████████████████████████████████████████████
+█─▄▄▄▄██▀▄─██▄─▄─▀█─▄▄─█▄─▄▄▀███▄─▄▄─█▄─▀─▄█▄─▄▄─█▄─▄▄▀█▄─▄▄─█─▄▄▄▄█─▄▄▄▄█
+█▄▄▄▄─██─▀─███─▄─▀█─██─██─▄─▄████─▄█▀██▀─▀███─▄▄▄██─▄─▄██─▄█▀█▄▄▄▄─█▄▄▄▄─█
+▀▄▄▄▄▄▀▄▄▀▄▄▀▄▄▄▄▀▀▄▄▄▄▀▄▄▀▄▄▀▀▀▄▄▄▄▄▀▄▄█▄▄▀▄▄▄▀▀▀▄▄▀▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀▄▄▄▄▄▀\n''')
 
-def exibir_nome_do_programa():
-    print('𝕊𝕒𝕓𝕠𝕣 𝕖𝕩𝕡𝕣𝕖𝕤𝕤')
-    
-def exibir_opcoes():
+def definiropcoes():
     print('1. Cadastrar restaurante')
-    print('2. Listar restaurante')
+    print('2. Listar Restaurantes')
     print('3. Ativar restaurante')
-    print('4. Sair\n')
+    print('4. Sair \n')
 
-def voltar_menu_principal():
-    input('Digite uma tecla para voltar ao menu principal')
+def voltar_menu():
+    input('\ndigite uma tecla para retornar ao menu')
     main()
-    
-def opcao_invalida():
-    print('Opção invalida\n')
-    voltar_menu_principal()
-    
+
+def opc_invalida():
+    print('opção invalida \n')
+    voltar_menu()
+
 def cadastrar_novo_restaurante():
-    exibir_subtitulo('CADASTRO DE NOVOS RESTAURANTES')
-    nome_do_restaurante=input('Digite o nome do restaurante que você quer cadastrar')
-    categoria = input (f'Digite a categoria do restaurante:' {nome_do_restaurante})
-    dados_do_restaurante = ('nome':nome_do_restaurante, 'categoria':categoria, 'ativo':False)
-    restaurantes.append(nome_do_restaurante)
-    print(f'O Restaurante {nome_restaurante} foi cadastrado com sucesso')
-    voltar_menu_principal()
-    
+    exibir_subtitulo('Cadastro de novos restaurantes\n')
+    nome_restaurante = input('Digite aqui o nome do novo restaurante: ')
+    categoria = input(f'Informe a categoria do Restaurante {nome_restaurante}: ')
+    print('Qual a situação do restaurante?\nAtivo = 1\nInativo = 2')
+    status = input('Defina o status do restaurante: ')
+    status = True if status == "1" else False
+    dados_restaurante  = {'nome':nome_restaurante,'categoria':categoria,'ativo':status}
+    restaurantes.append(dados_restaurante)
+    print(f'\n Restaurante {nome_restaurante} cadastrado com sucesso')
+    voltar_menu()
+
 def listar_restaurantes():
-    exibir_subtitulo('LISTANDO RESTAURANTES')
+    exibir_subtitulo('Lista dos restaurantes\n')
     
     for restaurante in restaurantes:
-        nome_restaurante=restaurante
-        categoria=restaurante['categoria']
-        ativo=retaurante['ativo']
-        print(f'- {nome_restaurante} | {categoria} | {ativo}' )
+        nome_restaurante=restaurante['nome']
+        categoria_restaurante=restaurante['categoria']
+        atividade_restaurante= 'Ativo' if restaurante['ativo'] else 'Inativo'
+        print(f' - {nome_restaurante} | {categoria_restaurante} | {atividade_restaurante}')
 
-def finalizar_app():
+    voltar_menu()
+        
+def fechar_app():
     exibir_subtitulo('Finalizar app')
-    
+
 def exibir_subtitulo(texto):
-    os.system('cls')
+    os.system("cls")
     print(texto)
     print()
     
-def escolher_opcao():
+def escolher_opc():
     try:
-        opcao_escolhida=int(input('Escolha uma opção: '))
-        
-        if opcao_escolhida==1:
-            # print('Você escolheu cadastrar um restaurante')
+        opc_escolhida = int(input("Escolha uma opção: "))
+
+        if opc_escolhida==1:
             cadastrar_novo_restaurante()
-        elif opcao_escolhida==2:
-            # print('Você escolheu listar os restaurantes')
+        elif opc_escolhida==2:
             listar_restaurantes()
-        elif opcao_escolhida==3:
-            print('Ativar restaurante')
-        else: 
-            opcao_invalida()
-    except: 
-        opcao_invalida()
-        
+        elif opc_escolhida==3:
+            print('Ativar Restaurante')
+            opc_invalida()
+        else:
+            fechar_app()
+    except:
+        opc_invalida()
+
 def main():
-    os.system('cls')
-    exibir_nome_do_programa()
-    exibir_opcoes()
-    escolher_opcao()
-    
-if __name__=='__main__':
+    os.system("cls")
+    exibir_maracutaia()
+    definiropcoes()
+    escolher_opc()
+
+if __name__ == '__main__':
     main()
